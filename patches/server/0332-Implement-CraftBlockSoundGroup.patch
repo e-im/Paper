@@ -49,10 +49,10 @@ index 0000000000000000000000000000000000000000..9a516520d975f52169e346adc4ec6d9d
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/craftbukkit/block/CraftBlock.java b/src/main/java/org/bukkit/craftbukkit/block/CraftBlock.java
-index bf12cb6a1f991372206e462e46f2686decff11a6..75dd8cbadae9a2d18931dd49f49f8f1e14b50da5 100644
+index d8136ba1aacf55f710365a9171033f743ce2775b..2cf063a3f934aba9ce7bcec23feb0ac022feb022 100644
 --- a/src/main/java/org/bukkit/craftbukkit/block/CraftBlock.java
 +++ b/src/main/java/org/bukkit/craftbukkit/block/CraftBlock.java
-@@ -764,4 +764,10 @@ public class CraftBlock implements Block {
+@@ -759,4 +759,10 @@ public class CraftBlock implements Block {
          VoxelShape shape = this.getNMS().getCollisionShape(world, position);
          return new CraftVoxelShape(shape);
      }

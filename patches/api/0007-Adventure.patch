@@ -1161,7 +1161,7 @@ index ab6b0ec328e94bf65a0dafd0403e5ee3b870296c..c8d37184d8e882a4084a1bfef85faa33
  
      /**
 diff --git a/src/main/java/org/bukkit/command/CommandSender.java b/src/main/java/org/bukkit/command/CommandSender.java
-index ac772bf349e0ffe9cab1df165d9460b387f2fe69..c88418c7aa19b4fecdfa9af3d18ff202a5dc5763 100644
+index 284be63a125624a8ae43d2c164aede810ce6bfe5..511746ef9576e4c219e9ab35da3ab0727cb7ee7c 100644
 --- a/src/main/java/org/bukkit/command/CommandSender.java
 +++ b/src/main/java/org/bukkit/command/CommandSender.java
 @@ -6,12 +6,13 @@ import org.bukkit.permissions.Permissible;
@@ -1185,7 +1185,7 @@ index ac772bf349e0ffe9cab1df165d9460b387f2fe69..c88418c7aa19b4fecdfa9af3d18ff202
       * @param messages An array of messages to be displayed
 +     * @see #sendMessage(net.kyori.adventure.text.Component)
       */
-     public void sendMessage(@NotNull String[] messages);
+     public void sendMessage(@NotNull String... messages);
  
 @@ -27,6 +29,7 @@ public interface CommandSender extends Permissible {
       *
@@ -1201,7 +1201,7 @@ index ac772bf349e0ffe9cab1df165d9460b387f2fe69..c88418c7aa19b4fecdfa9af3d18ff202
       * @param sender The sender of this message
 +     * @see #sendMessage(net.kyori.adventure.identity.Identified, net.kyori.adventure.text.Component)
       */
-     public void sendMessage(@Nullable UUID sender, @NotNull String[] messages);
+     public void sendMessage(@Nullable UUID sender, @NotNull String... messages);
  
 @@ -61,7 +65,9 @@ public interface CommandSender extends Permissible {
           * Sends this sender a chat component.

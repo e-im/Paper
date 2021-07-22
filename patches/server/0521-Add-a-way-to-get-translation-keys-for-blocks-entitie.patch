@@ -6,10 +6,10 @@ Subject: [PATCH] Add a way to get translation keys for blocks, entities and
 
 
 diff --git a/src/main/java/org/bukkit/craftbukkit/block/CraftBlock.java b/src/main/java/org/bukkit/craftbukkit/block/CraftBlock.java
-index 64c304cab8c7c4c9c29f73465f99c11f224a72bd..b31eaa1459690d7f54989ba7a01f96a3f0d8d3b9 100644
+index ec107a4a30abc777798c18952b633b54a7efc661..75863778df4b6988452ff27a1ba8a4e1733b3b7e 100644
 --- a/src/main/java/org/bukkit/craftbukkit/block/CraftBlock.java
 +++ b/src/main/java/org/bukkit/craftbukkit/block/CraftBlock.java
-@@ -777,5 +777,10 @@ public class CraftBlock implements Block {
+@@ -772,5 +772,10 @@ public class CraftBlock implements Block {
      public com.destroystokyo.paper.block.BlockSoundGroup getSoundGroup() {
          return new com.destroystokyo.paper.block.CraftBlockSoundGroup(getNMSBlock().defaultBlockState().getSoundType());
      }

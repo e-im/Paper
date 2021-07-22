@@ -6,10 +6,10 @@ Subject: [PATCH] Add Destroy Speed API
 Co-authored-by: Jake Potrebic <jake.m.potrebic@gmail.com>
 
 diff --git a/src/main/java/org/bukkit/craftbukkit/block/CraftBlock.java b/src/main/java/org/bukkit/craftbukkit/block/CraftBlock.java
-index aa81c0a4c02fd6f2ab900983fd8c9668fada802e..2209587fbc4240561aeea6e525fbf22f5041e145 100644
+index 2f8ab6660c8a0cf208fc59e2d8a3f94c07bdd482..dbb1e219be66e37829ec5be585a9881d589cf6e6 100644
 --- a/src/main/java/org/bukkit/craftbukkit/block/CraftBlock.java
 +++ b/src/main/java/org/bukkit/craftbukkit/block/CraftBlock.java
-@@ -782,5 +782,23 @@ public class CraftBlock implements Block {
+@@ -777,5 +777,23 @@ public class CraftBlock implements Block {
      public String getTranslationKey() {
          return org.bukkit.Bukkit.getUnsafe().getTranslationKey(this);
      }
