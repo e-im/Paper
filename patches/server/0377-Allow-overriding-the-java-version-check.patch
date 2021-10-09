@@ -5,16 +5,43 @@ Subject: [PATCH] Allow overriding the java version check
 
 -DPaper.IgnoreJavaVersion=true
 
+diff --git a/src/main/java/net/minecraft/server/Main.java b/src/main/java/net/minecraft/server/Main.java
+index 7ce854edba32ffcafaa5268d4bb2822a5233e40b..3418ca14274ec3b23b1d5afe3c5075bdcf06399c 100644
+--- a/src/main/java/net/minecraft/server/Main.java
++++ b/src/main/java/net/minecraft/server/Main.java
+@@ -107,6 +107,13 @@ public class Main {
+             org.bukkit.configuration.file.YamlConfiguration paperConfiguration = loadConfigFile((File) optionset.valueOf("paper-settings"));
+             // Paper end
+ 
++            // Paper start - convert to warn and move down
++            final float javaVersion = Float.parseFloat(System.getProperty("java.class.version"));
++            if (javaVersion > 61.0 && !Boolean.getBoolean("Paper.IgnoreJavaVersion")) {
++                LOGGER.warn("Untested Java detected ({}). Only up to Java 17 has been tested.", javaVersion);
++            }
++            // Paper end
++
+             Path path1 = Paths.get("eula.txt");
+             Eula eula = new Eula(path1);
+ 
 diff --git a/src/main/java/org/bukkit/craftbukkit/Main.java b/src/main/java/org/bukkit/craftbukkit/Main.java
-index 1da136f365664d4f8ace3d2d135b19eb97e55304..33fb61c219f5356a40c4e6e47187a3a606402536 100644
+index 1da136f365664d4f8ace3d2d135b19eb97e55304..81200de213ad8452f8d22e7ba8d91cae4f7884c5 100644
 --- a/src/main/java/org/bukkit/craftbukkit/Main.java
 +++ b/src/main/java/org/bukkit/craftbukkit/Main.java
-@@ -185,7 +185,7 @@ public class Main {
-             }
-             if (javaVersion > 61.0) {
-                 System.err.println("Unsupported Java detected (" + javaVersion + "). Only up to Java 17 is supported.");
--                return;
-+                if (!Boolean.getBoolean("Paper.IgnoreJavaVersion")) return; // Paper
+@@ -178,7 +178,7 @@ public class Main {
+                 return;
              }
  
+-            float javaVersion = Float.parseFloat(System.getProperty("java.class.version"));
++            /*float javaVersion = Float.parseFloat(System.getProperty("java.class.version")); // Paper - convert to warn and move down
+             if (javaVersion < 60.0) {
+                 System.err.println("Unsupported Java detected (" + javaVersion + "). This version of Minecraft requires at least Java 16. Check your Java version with the command 'java -version'.");
+                 return;
+@@ -186,7 +186,7 @@ public class Main {
+             if (javaVersion > 61.0) {
+                 System.err.println("Unsupported Java detected (" + javaVersion + "). Only up to Java 17 is supported.");
+                 return;
+-            }
++            }*/ // Paper - convert to warn and move down
+ 
              try {
+                 // Paper start - Handled by TerminalConsoleAppender

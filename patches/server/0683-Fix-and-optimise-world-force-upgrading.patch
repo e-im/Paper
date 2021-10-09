@@ -237,7 +237,7 @@ index 0000000000000000000000000000000000000000..389faf099ff64bb2845222600552c8fc
 +    }
 +}
 diff --git a/src/main/java/net/minecraft/server/Main.java b/src/main/java/net/minecraft/server/Main.java
-index cf0a74b8a1c31d4bc493eb09a69ee2bd94cb6485..cfd43069ee2b6f79afb12e10d223f6bf75100034 100644
+index 52064da3fdb616bac42d664e51848f6718b60131..2dd3b30e78c44e7fa7db5744a4245f0e93cb3980 100644
 --- a/src/main/java/net/minecraft/server/Main.java
 +++ b/src/main/java/net/minecraft/server/Main.java
 @@ -15,6 +15,7 @@ import java.nio.file.Paths;
@@ -248,7 +248,7 @@ index cf0a74b8a1c31d4bc493eb09a69ee2bd94cb6485..cfd43069ee2b6f79afb12e10d223f6bf
  import joptsimple.NonOptionArgumentSpec;
  import joptsimple.OptionParser;
  import joptsimple.OptionSet;
-@@ -283,6 +284,15 @@ public class Main {
+@@ -290,6 +291,15 @@ public class Main {
      }
      // Paper end
  
@@ -265,7 +265,7 @@ index cf0a74b8a1c31d4bc493eb09a69ee2bd94cb6485..cfd43069ee2b6f79afb12e10d223f6bf
          Main.LOGGER.info("Forcing world upgrade! {}", session.getLevelId()); // CraftBukkit
          WorldUpgrader worldupgrader = new WorldUpgrader(session, dataFixer, worlds, eraseCache);
 diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
-index 33dcb39428c3bd24daa600c2b486954466d81eef..1f6d59d1a95fcc8f93685a9ed6bb1d9419aafb95 100644
+index 84afe36963178aa0319e219244ddbe6f0b91260b..be6b19b587ae2bbc708d712fc4327e4c56b7197c 100644
 --- a/src/main/java/net/minecraft/server/MinecraftServer.java
 +++ b/src/main/java/net/minecraft/server/MinecraftServer.java
 @@ -563,13 +563,7 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa

@@ -5,10 +5,10 @@ Subject: [PATCH] Fix SPIGOT-5885 Unable to disable advancements
 
 
 diff --git a/src/main/java/net/minecraft/server/Main.java b/src/main/java/net/minecraft/server/Main.java
-index 3d6e09a3f028e50c08cbbb6b426f5b044c7b9e67..ea136b9ad3a2a07076e12b8656c68f63aa4718c8 100644
+index c66cd84a639a800d906d955e3719605e7cd94f47..b25ef593223919b132f2d0c23acc753052697e0f 100644
 --- a/src/main/java/net/minecraft/server/Main.java
 +++ b/src/main/java/net/minecraft/server/Main.java
-@@ -129,6 +129,7 @@ public class Main {
+@@ -136,6 +136,7 @@ public class Main {
                  return;
              }
  
