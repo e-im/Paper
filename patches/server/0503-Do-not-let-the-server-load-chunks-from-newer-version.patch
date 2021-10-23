@@ -9,7 +9,7 @@ the game, immediately stop the server to prevent data corruption.
 You can override this functionality at your own peril.
 
 diff --git a/src/main/java/net/minecraft/world/level/chunk/storage/ChunkSerializer.java b/src/main/java/net/minecraft/world/level/chunk/storage/ChunkSerializer.java
-index ed05a11f5038fdac90576ca33a0b710c83ab39a1..80b9f3547bc30cb470d272132e96fcce188efd91 100644
+index ed05a11f5038fdac90576ca33a0b710c83ab39a1..a83fd4dce5c6e723700707c0d3732b3d73a750e6 100644
 --- a/src/main/java/net/minecraft/world/level/chunk/storage/ChunkSerializer.java
 +++ b/src/main/java/net/minecraft/world/level/chunk/storage/ChunkSerializer.java
 @@ -96,10 +96,25 @@ public class ChunkSerializer {
@@ -30,7 +30,7 @@ index ed05a11f5038fdac90576ca33a0b710c83ab39a1..80b9f3547bc30cb470d272132e96fcce
 +        if (nbt.contains("DataVersion", 99)) {
 +            int dataVersion = nbt.getInt("DataVersion");
 +            if (!JUST_CORRUPT_IT && dataVersion > CURRENT_DATA_VERSION) {
-+                new RuntimeException("Server attempted to load chunk saved with newer version of minecraft! " + dataVersion + " > " + CURRENT_DATA_VERSION).printStackTrace();
++                new RuntimeException("Server attempted to load chunk in world: " + world.getWorld().getName() + " saved with newer version of minecraft! " + dataVersion + " > " + CURRENT_DATA_VERSION).printStackTrace();
 +                System.exit(1);
 +            }
 +        }
