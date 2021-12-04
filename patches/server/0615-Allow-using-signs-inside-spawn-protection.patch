@@ -1,0 +1,33 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Anton Lindroth <ntoonio@gmail.com>
+Date: Wed, 15 Apr 2020 01:54:02 +0200
+Subject: [PATCH] Allow using signs inside spawn protection
+
+
+diff --git a/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java b/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java
+index 24f32a22c5f71b9623e5a581aef50c5379381941..452d11f866a2e0052da9edd93fe9eb2daf471ef8 100644
+--- a/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java
++++ b/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java
+@@ -784,4 +784,9 @@ public class PaperWorldConfig {
+             delayChunkUnloadsBy *= 20;
+         }
+     }
++
++    public boolean allowUsingSignsInsideSpawnProtection = false;
++    private void allowUsingSignsInsideSpawnProtection() {
++        allowUsingSignsInsideSpawnProtection = getBoolean("allow-using-signs-inside-spawn-protection", allowUsingSignsInsideSpawnProtection);
++    }
+ }
+diff --git a/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java b/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
+index af986e2874b6f332831e9a77a89a63011f40b515..4fc9b2319971a45a90949e14f4d4388467eba53e 100644
+--- a/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
++++ b/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
+@@ -1728,7 +1728,7 @@ public class ServerGamePacketListenerImpl implements ServerPlayerConnection, Ser
+         int i = this.player.level.getMaxBuildHeight();
+ 
+         if (blockposition.getY() < i) {
+-            if (this.awaitingPositionFromClient == null && this.player.distanceToSqr((double) blockposition.getX() + 0.5D, (double) blockposition.getY() + 0.5D, (double) blockposition.getZ() + 0.5D) < 64.0D && worldserver.mayInteract(this.player, blockposition)) {
++            if (this.awaitingPositionFromClient == null && this.player.distanceToSqr((double) blockposition.getX() + 0.5D, (double) blockposition.getY() + 0.5D, (double) blockposition.getZ() + 0.5D) < 64.0D && (worldserver.mayInteract(this.player, blockposition) || (worldserver.paperConfig.allowUsingSignsInsideSpawnProtection && worldserver.getBlockState(blockposition).getBlock() instanceof net.minecraft.world.level.block.SignBlock))) { // Paper
+                 // CraftBukkit start - Check if we can actually do something over this large a distance
+                 // Paper - move check up
+                 this.player.stopUsingItem(); // SPIGOT-4706

@@ -1,0 +1,22 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Shane Freeder <theboyetronic@gmail.com>
+Date: Sat, 9 Jan 2021 14:17:07 +0100
+Subject: [PATCH] Remove stale POIs
+
+
+diff --git a/src/main/java/net/minecraft/server/level/ServerLevel.java b/src/main/java/net/minecraft/server/level/ServerLevel.java
+index d80db9a995a611bee16e5b09bbd7cca15394867f..f352c7d30a9d493f6d86830414623c2b2b1e2554 100644
+--- a/src/main/java/net/minecraft/server/level/ServerLevel.java
++++ b/src/main/java/net/minecraft/server/level/ServerLevel.java
+@@ -1800,6 +1800,11 @@ public class ServerLevel extends Level implements WorldGenLevel {
+             });
+             optional1.ifPresent((villageplacetype) -> {
+                 this.getServer().execute(() -> {
++                    // Paper start
++                    if (optional.isEmpty() && this.getPoiManager().exists(blockposition1, poiType -> true)) {
++                        this.getPoiManager().remove(blockposition1);
++                    }
++                    // Paper end
+                     this.getPoiManager().add(blockposition1, villageplacetype);
+                     DebugPackets.sendPoiAddedPacket(this, blockposition1);
+                 });
